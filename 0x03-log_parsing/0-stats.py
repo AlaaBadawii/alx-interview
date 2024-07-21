@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
+"""
+script that reads stdin line by line and computes metrics
+"""
 import re
 import sys
 import signal
 import threading
-
-# Initialize variables
 possible_status = {200, 301, 400, 401, 403, 404, 405, 500}
 count = 0
 status_count = {}
