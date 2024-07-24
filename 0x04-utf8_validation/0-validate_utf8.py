@@ -9,14 +9,14 @@ def validUTF8(data):
     skip = 0
     n = len(data)
     for i in range(n):
-        if skip > 0:
-            skip -= 1
-            continue
+        # if skip > 0:
+        #     skip -= 1
+        #     continue
         if type(data[i]) != int or data[i] < 0 or data[i] > 0x10ffff:
             return False
         span = 0  # Initialize span to a default value
         if data[i] <= 0x7f:
-            skip = 0
+            continue
         elif data[i] & 0b11111000 == 0b11110000:
             # 4-byte utf-8 character encoding
             span = 4
@@ -36,7 +36,7 @@ def validUTF8(data):
             ))
             if not all(next_body):
                 return False
-            skip = span - 1
+            # skip = span - 1
         else:
             return False
     return True
